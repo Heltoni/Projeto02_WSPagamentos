@@ -43,6 +43,19 @@ namespace Projeto02_WSPagamentos.Models
                 {
                     return StatusPagto.PAGAMENTO_JA_EFETUADO;
                 }
+
+                double valor = ctx.Pagamentos
+                    .Where(p => p.NumeroCartao.Equals(pagamento.NumeroCartao))
+                    .Sum(x => x.ValorPagto);
+
+                if (limite < (valor + pagamento.ValorPagto))
+                {
+                    return StatusPagto.SALDO_INSULFICIENTE;
+                }
+
+                ctx.Pagamentos.Add(pagamento);
+                ctx.SaveChanges();
+                return StatusPagto.PAGAMENTO_OK;
             }
         }
 

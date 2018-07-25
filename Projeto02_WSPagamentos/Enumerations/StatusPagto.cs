@@ -11,7 +11,7 @@ namespace Projeto02_WSPagamentos.Enumerations
         CARTAO_INEXISTENTE,
         PAGAMENTO_JA_EFETUADO,
         PAGAMENTO_OK,
-        SALDO_INEXISTENTE
+        SALDO_INSULFICIENTE
 
     }
 }
