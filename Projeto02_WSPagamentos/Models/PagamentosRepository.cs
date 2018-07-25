@@ -24,9 +24,15 @@ namespace Projeto02_WSPagamentos.Models
                 var cartao = ctx.Clientes
                     .FirstOrDefault(
                     c => c.NumeroCartao.Equals(pagamento.NumeroCartao));
+
+                double limite = 0;
                 if (cartao == null)
                 {
                     return StatusPagto.CARTAO_INEXISTENTE;
+                }
+                else
+                {
+                    limite = cartao.Limite;
                 }
 
                 var pagto = ctx.Pagamentos
